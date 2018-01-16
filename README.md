@@ -22,13 +22,32 @@ int MCP3008_ReadChannelDifferential(int differential);
 Python:
 ```python
 spi = initADC(9,8,7,6)
-chan = 0 #from 0 to 8
+chan = 0 #from 0 to 7
 adcVal = readADC(spi, chan)
 #also: read differential values (e.g. channel 0 minus channel 1)`
 adcDifVal = readADC(spi, chan)
 ```
 
 All returned ADC values are integers, with 10 bits filled from the ADC. You may convert it into a voltage by remapping the value from the input range 0-1023 to 0-3.3 (i.e. `voltage = adcValue * (3.3 / 1023.0)`).
+
+### Dependencies
+
+Python:
+```sh
+opkg update 
+opkg install python-light pyOnionSpi
+```
+
+C: 
+
+```sh
+opkg update 
+opkg install libonionspi liboniondebug
+```
+
+### Compilation
+
+For the C program, the Makefile is supposed to use the include and library files from https://github.com/gamer-cndg/omega2-libs.
 
 ### Credits
 
